@@ -6,8 +6,7 @@ iface lo inet loopback
 
 # Wireless interfaces
 iface wlan0 inet dhcp
-	wpa-ssid "YOURSSID"
-    wpa-psk "YOURPSK"
+    wpa-conf /etc/wpa_supplicant.conf
 
 allow-hotplug SoftAp0
 auto SoftAp0

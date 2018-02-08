@@ -1,15 +1,16 @@
 #! /bin/sh
-# /etc/init.d/softap: start and stop the SoftAP network
+# /etc/init.d/softap: start and stop the SoftAp network
 
 start()
 {
-  /usr/sbin/service hostapd stop
-  /usr/sbin/service dnsmasq stop
-  /sbin/iw dev wlan0 interface add SoftAP0 type __ap
+  /etc/init.d/hostapd stop
+  /etc/init.d/dnsmasq stop
+  /usr/sbin/iw dev wlan0 interface add SoftAp0 type __ap
   /sbin/ifdown wlan0
-  /usr/sbin/service hostapd start
-  /usr/ifup wlan0
-  /usr/sbin/service dnsmasq start
+  /etc/init.d/hostapd start
+  /sbin/ifup wlan0
+  /sbin/ifup SoftAp0
+  /etc/init.d/dnsmasq start
 }
 
 stop()
