@@ -1,0 +1,50 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:             softap
+# Required-Start:       $remote_fs $syslog
+# Required-Stop:        $remote_fs $syslog
+# Default-Start:        2 3 4 5
+# Default-Stop:
+# Short-Description:    SoftAP network
+### END INIT INFO
+
+set -e
+
+# /etc/init.d/softap: start and stop the SoftAP network
+
+start()
+{
+  /usr/sbin/service hostapd stop
+  /usr/sbin/service dnsmasq stop
+  /sbin/iw dev wlan0 interface add SoftAP0 type __ap
+  /sbin/ifdown wlan0
+  /usr/sbin/service hostapd start
+  /usr/ifup wlan0
+  /usr/sbin/service dnsmasq start
+}
+
+stop()
+{
+  /usr/sbin/service hostapd stop
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  reload|force-reload|restart)
+    stop
+    start
+    ;;
+  status)
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
+exit 0
