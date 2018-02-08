@@ -1,16 +1,4 @@
 #! /bin/sh
-
-### BEGIN INIT INFO
-# Provides:             softap
-# Required-Start:       $remote_fs $syslog
-# Required-Stop:        $remote_fs $syslog
-# Default-Start:        2 3 4 5
-# Default-Stop:
-# Short-Description:    SoftAP network
-### END INIT INFO
-
-set -e
-
 # /etc/init.d/softap: start and stop the SoftAP network
 
 start()

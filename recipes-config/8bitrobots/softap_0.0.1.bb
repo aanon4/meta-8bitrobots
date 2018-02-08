@@ -1,7 +1,7 @@
 DESCRIPTION = "SoftAP"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENCE;md5=61287f92700ec1bdf13bc86d8228cd13"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 PROVIDES = "softap"
 RPROVIDES_${PN} = "softap"
@@ -10,6 +10,12 @@ RDEPENDS_${PN} = " iw hostapd dnsmasq"
 
 PR = "r1"
 SRC_URI = "file://softap"
+
+S = "${WORKDIR}"
+
+inherit update-rc.d systemd
+INITSCRIPT_NAME = "softap"
+INITSCRIPT_PARAMS="defaults 30"
 
 do_configure() {
 }
