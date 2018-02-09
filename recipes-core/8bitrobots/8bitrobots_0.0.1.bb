@@ -29,8 +29,6 @@ do_install() {
   cp -R . ${D}/8bitrobots
   rm -rf ${D}/8bitrobots/node_modules/usage/compiled/*/ia32
   rm -rf ${D}/8bitrobots/node_modules/usage/compiled/*/x64
-  rm -rf ${D}/8bitrobots/node_modules/deasync/bin/*-ia32-*
-  rm -rf ${D}/8bitrobots/node_modules/deasync/bin/*-x64-*
   rm -f ${D}/8bitrobots/utils/scurve
   rm -rf ${D}/8bitrobots/node_modules/node-gyp/test
   rm -rf ${D}/8bitrobots/node_modules/node-gyp/gyp/samples
