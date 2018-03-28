@@ -29,7 +29,7 @@ do_compile() {
 
 do_install() {
   cp -R . ${D}/8bitrobots
-  mkdir -f ${D}/8bitrobots/saved
+  mkdir ${D}/8bitrobots/saved
   rm -rf ${D}/8bitrobots/node_modules/usage/compiled/*/ia32
   rm -rf ${D}/8bitrobots/node_modules/usage/compiled/*/x64
   rm -f ${D}/8bitrobots/utils/scurve
