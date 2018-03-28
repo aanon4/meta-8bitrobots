@@ -9,10 +9,10 @@ RPROVIDES_${PN} = "8bitrobots"
 
 SRCREV = "master"
 PR = "r1"
-SRC_URI = "git://github.com/aanon4/8bitrobots.git"
+SRC_URI = "git://github.com/aanon4/8bitrobots.git file://robot"
 
-DEPENDS = " nodejs pigpio"
-RDEPENDS_${PN} = " nodejs pigpio"
+DEPENDS = " nodejs pigpio firstuse"
+RDEPENDS_${PN} = " nodejs pigpio firstuse"
 
 inherit npm-base update-rc.d systemd
 INITSCRIPT_NAME = "robot"
@@ -29,6 +29,7 @@ do_compile() {
 
 do_install() {
   cp -R . ${D}/8bitrobots
+  mkdir -f ${D}/8bitrobots/saved
   rm -rf ${D}/8bitrobots/node_modules/usage/compiled/*/ia32
   rm -rf ${D}/8bitrobots/node_modules/usage/compiled/*/x64
   rm -f ${D}/8bitrobots/utils/scurve
@@ -38,4 +39,4 @@ do_install() {
   install -m 0755 ${WORKDIR}/robot ${D}${sysconfdir}/init.d/robot
 }
 
-FILES_${PN} = "/8bitrobots"
+FILES_${PN} = "/8bitrobots ${sysconfdir}/init.d/robot"
