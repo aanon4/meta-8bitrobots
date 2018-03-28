@@ -1,0 +1,44 @@
+#! /bin/sh
+# /etc/init.d/firstuse: start and stop FirstUse
+
+start()
+{
+  echo
+  if test -f /.first-use-run ; then
+   return
+  fi
+
+  # Extra two bytes of the mac address to give this device a "unique" name.
+  UNIQUE=$(cat /sys/class/net/wlan0/address| sed s/..:..:..:..:// | sed s/://)
+  # New name
+  NAME=8BitRobot-$UNIQUE
+
+  # Set Hostname
+  mv /etc/hostname /etc/hostname.bak
+  echo $NAME > /etc/hostname
+  hostname $NAME
+
+  # Set AP name
+  mv /etc/hostapd.conf /etc/hostapd.conf.bak
+  cat /etc/hostapd.conf.bak | sed s/^ssid=.*$/ssid=$NAME/ > /etc/hostapd.conf
+
+  touch /.first-use-run
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    ;;
+  reload|force-reload|restart)
+    start
+    ;;
+  status)
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
+exit 0

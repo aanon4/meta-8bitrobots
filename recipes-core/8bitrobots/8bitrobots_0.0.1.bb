@@ -14,7 +14,9 @@ SRC_URI = "git://github.com/aanon4/8bitrobots.git"
 DEPENDS = " nodejs pigpio"
 RDEPENDS_${PN} = " nodejs pigpio"
 
-inherit npm-base
+inherit npm-base update-rc.d systemd
+INITSCRIPT_NAME = "robot"
+INITSCRIPT_PARAMS="defaults 40"
 
 S = "${WORKDIR}/git"
 
@@ -32,6 +34,8 @@ do_install() {
   rm -f ${D}/8bitrobots/utils/scurve
   rm -rf ${D}/8bitrobots/node_modules/node-gyp/test
   rm -rf ${D}/8bitrobots/node_modules/node-gyp/gyp/samples
+  install -d ${D}${sysconfdir}/init.d
+  install -m 0755 ${WORKDIR}/robot ${D}${sysconfdir}/init.d/robot
 }
 
 FILES_${PN} = "/8bitrobots"

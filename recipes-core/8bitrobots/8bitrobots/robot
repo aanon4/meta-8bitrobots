@@ -1,0 +1,35 @@
+#! /bin/sh
+# /etc/init.d/robot: start and stop the robot
+
+start()
+{
+  cd /8bitrobots
+  ./8bitrobot.js box > /dev/null 2>&1 &
+  echo $! > /run/8bitrobot.pid
+}
+
+stop()
+{
+  kill $(cat /run/8bitrobot.pid)
+  rm -f /run/8bitrobot.pid
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  reload|force-reload|restart)
+    stop
+    start
+    ;;
+  status)
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
+exit 0
