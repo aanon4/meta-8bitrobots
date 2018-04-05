@@ -10,7 +10,7 @@ start()
 
 stop()
 {
-  kill $(cat /run/8bitrobot.pid)
+  kill -INT $(cat /run/8bitrobot.pid)
   rm -f /run/8bitrobot.pid
 }
 
