@@ -6,6 +6,7 @@ start()
   /etc/init.d/hostapd stop
   /etc/init.d/dnsmasq stop
   /usr/sbin/iw dev wlan0 interface add SoftAp0 type __ap
+  /sbin/ifconfig SoftAp0 hw ether $(printf '02:00:00:%02X:%02X:%02X\n' $[RANDOM%256] $[RANDOM%256] $[RANDOM%256])
   /sbin/ifdown wlan0
   /etc/init.d/hostapd start
   /sbin/ifup wlan0
