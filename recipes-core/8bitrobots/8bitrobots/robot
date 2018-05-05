@@ -4,7 +4,7 @@
 start()
 {
   cd /8bitrobots
-  ./8bitrobot.js box > /dev/null 2>&1 &
+  ./8bitrobot.js bot > /dev/null 2>&1 &
   echo $! > /run/8bitrobot.pid
 }
 
