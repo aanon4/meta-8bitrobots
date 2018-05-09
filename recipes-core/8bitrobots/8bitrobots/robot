@@ -4,13 +4,13 @@
 start()
 {
   cd /8bitrobots
-  ./8bitrobot.js box > /dev/null 2>&1 &
+  ./8bitrobot.js bot > /dev/null 2>&1 &
   echo $! > /run/8bitrobot.pid
 }
 
 stop()
 {
-  kill $(cat /run/8bitrobot.pid)
+  kill -INT $(cat /run/8bitrobot.pid)
   rm -f /run/8bitrobot.pid
 }
 
