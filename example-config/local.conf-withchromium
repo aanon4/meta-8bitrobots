@@ -259,8 +259,7 @@ DISTRO_FEATURES_append += " systemd wifi x11-base"
 EXTRA_IMAGE_FEATURES += " ssh-server-dropbear allow-empty-password empty-root-password"
 IMAGE_INSTALL_append += " linux-firmware-bcm43430 bridge-utils hostapd dnsmasq softap iptables wpa-supplicant avahi-daemon i2c-tools"
 IMAGE_INSTALL_append += " 8bitrobots"
-# Don't include Chromium
-#IMAGE_INSTALL_append += " xserver-xorg xf86-video-fbdev chromium-x11"
+IMAGE_INSTALL_append += " xserver-xorg xf86-video-fbdev chromium-x11"
 
 PREFERRED_VERSION_linux-raspberrypi = "4.%"
 PREFERRED_VERSION_nodejs = "7.10.%"
